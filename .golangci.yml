@@ -1,0 +1,49 @@
+run:
+  timeout: 5m
+  issues-exit-code: 1
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - bodyclose
+    - importas
+    - dogsled
+    - dupl
+    - gochecknoinits
+    - gocognit
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - revive
+    - gosec
+    - misspell
+    - nakedret
+    - prealloc
+    - stylecheck
+    - unconvert
+    - whitespace
+    - rowserrcheck
+    - goconst
+    - asciicheck
+    - nestif
+    - sqlclosecheck
+
+linters-settings:
+  govet:
+    check-shadowing: true
+  goimports:
+    local-prefixes: bff
+  gocritic:
+    disabled-checks:
+      - sloppyReassign
+      - whyNoLint
+    enabled-tags:
+      - experimental
+      - opinionated

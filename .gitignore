@@ -1,0 +1,7 @@
+.idea/
+/vendor/
+
+bin/microservicetemplate
+!bin/
+
+log/*
