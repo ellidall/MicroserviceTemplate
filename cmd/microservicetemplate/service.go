@@ -27,7 +27,7 @@ func service(
 		Name:  "service",
 		Usage: "Runs the gRPC service",
 		Action: func(c *cli.Context) error {
-			connContainer, err := newConnectionsContainer(config, closer)
+			connContainer, err := newConnectionsContainer(config, logger, closer)
 			if err != nil {
 				return errors.Wrap(err, "failed to init connections")
 			}

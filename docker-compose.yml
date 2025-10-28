@@ -1,0 +1,38 @@
+version: '3.3'
+
+services:
+  microservicetemplate:
+    image: microservicetemplate
+    container_name: microservicetemplate
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081" # GRPC API port
+    environment:
+      MICROSERVICETEMPLATE_DB_HOST: microservicetemplate-db
+      MICROSERVICETEMPLATE_DB_PORT: 3306
+      MICROSERVICETEMPLATE_DB_NAME: microservicetemplate
+      MICROSERVICETEMPLATE_DB_USER: microservicetemplate
+      MICROSERVICETEMPLATE_DB_PASSWORD: ${DB_PASSWORD}
+      MICROSERVICETEMPLATE_DB_MAX_CONN: 5
+    depends_on:
+      - microservicetemplate-db
+    restart: unless-stopped
+
+  microservicetemplate-db:
+    image: percona:8.0
+    container_name: microservicetemplate-db
+    environment:
+      MYSQL_DATABASE: microservicetemplate
+      MYSQL_USER: microservicetemplate
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - microservicetemplate-db-data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  microservicetemplate-db-data:

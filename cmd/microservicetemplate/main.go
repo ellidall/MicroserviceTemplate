@@ -12,6 +12,8 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+// TODO:  appID используется как префикс для env-переменных
+
 const appID = "microserviceTemplate"
 
 func main() {
