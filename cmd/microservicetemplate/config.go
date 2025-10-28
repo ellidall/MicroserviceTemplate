@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/kelseyhightower/envconfig"
 	"github.com/pkg/errors"
-	"time"
 )
 
 func parseEnv() (*config, error) {

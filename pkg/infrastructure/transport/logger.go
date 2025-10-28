@@ -2,10 +2,11 @@ package transport
 
 import (
 	"context"
+	"time"
+
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
-	"time"
 )
 
 type ErrorInterceptor struct {

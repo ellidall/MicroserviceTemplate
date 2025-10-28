@@ -10,6 +10,7 @@ RUN apt-get update && \
     useradd -u 1001 -r -g 1001 -s /sbin/nologin -c "app user" appuser
 
 ADD ./bin/microservicetemplate /app/bin/
+ADD ./data /app/data
 WORKDIR /app
 
 ENTRYPOINT [ "/app/bin/microservicetemplate" ]

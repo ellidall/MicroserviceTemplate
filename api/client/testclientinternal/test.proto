@@ -1,0 +1,11 @@
+syntax = "proto3";
+package Test;
+
+option go_package = "/.;testclientinternal";
+
+service TestInternalService {
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message PingRequest {}
+message PingResponse { string message = 1; }

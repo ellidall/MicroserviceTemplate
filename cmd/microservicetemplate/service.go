@@ -13,10 +13,7 @@ import (
 	"microservicetemplate/pkg/infrastructure/transport"
 )
 
-const (
-	maxGRPCMsgSize  = 128 * 1024 * 1024 // 128MB
-	shutdownTimeout = 30 * time.Second
-)
+const shutdownTimeout = 30 * time.Second
 
 func service(
 	config *config,
@@ -47,11 +44,7 @@ func startGRPCServer(
 	logger *log.Logger,
 	_ *dependencyContainer,
 ) error {
-	grpcServer := grpc.NewServer(
-		grpc.UnaryInterceptor(makeGrpcUnaryInterceptor(logger)),
-		grpc.MaxRecvMsgSize(maxGRPCMsgSize),
-		grpc.MaxSendMsgSize(maxGRPCMsgSize),
-	)
+	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(makeGrpcUnaryInterceptor(logger)))
 
 	// TODO: зарегистрировать gRPC сервисы
 

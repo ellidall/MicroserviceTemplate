@@ -2,6 +2,7 @@ package transport
 
 import (
 	"context"
+
 	"github.com/pkg/errors"
 	"google.golang.org/grpc/codes"
 )
@@ -34,8 +35,6 @@ var internalErrorCodes = newErrorSet()
 // getGRPCCode recursively unwraps joined errors and returns GRPC code by the first meaningful error
 func getGRPCCode(err error) codes.Code {
 	cause := errors.Cause(err)
-
-	//status.Error()
 
 	switch {
 	case cause == nil:
