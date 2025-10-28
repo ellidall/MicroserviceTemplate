@@ -49,7 +49,7 @@ local gosources = [
                 from: "gobase",
                 workdir: "/app",
                 cache: gocache,
-                dependsOn: ['generate'],
+                dependsOn: ['generate', 'modules'],
                 command: 'go build \\
                         -trimpath -v \\
                         -o ./bin/' + appID + ' ./cmd/' + appID,
@@ -69,6 +69,19 @@ local gosources = [
             generate: ['generategrpc'],
 
             generategrpc: schemas.generateGRPC(protos),
+
+            modules: ["gotidy"],
+
+            gotidy: {
+              from: "gobase",
+              workdir: "/app",
+              cache: gocache,
+              command: "go mod tidy",
+              output: {
+                artifact: "/app/go.*",
+                "local": ".",
+              },
+            },
 
             test: {
                 from: "gobase",

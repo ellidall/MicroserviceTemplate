@@ -7,8 +7,8 @@ local appIDs = [
 ];
 
 local proto = [
-    'api/client/testclientinternal/test.proto',
-    'api/server/microservicetemplateinternal/test.proto',
+    'api/client/testinternal/testinternal.proto',
+    'api/server/microservicetemplateinternal/microservicetemplateinternal.proto',
 ];
 
 project.project(appIDs, proto)
