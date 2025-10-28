@@ -32,7 +32,7 @@ func main() {
 	err = runApp(ctx, cnf, logger)
 	switch errors.Cause(err) {
 	case nil:
-		logger.Info("call finished")
+		logger.Infof("call finished")
 	default:
 		logger.Fatal(err)
 	}
@@ -57,7 +57,7 @@ func runApp(
 		Name: appID,
 		Commands: []*cli.Command{
 			service(config, logger, closer),
-			migrator(config, logger),
+			migrate(config, logger),
 		},
 	}
 

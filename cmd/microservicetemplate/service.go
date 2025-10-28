@@ -65,7 +65,7 @@ func startGRPCServer(
 	case err := <-errCh:
 		return err
 	case <-ctx.Done():
-		logger.Info("Shutdown signal received, stopping gRPC server...")
+		logger.Infof("Shutdown signal received, stopping gRPC server...")
 		shutdownGRPCServer(grpcServer, logger)
 		return nil
 	}
@@ -80,7 +80,7 @@ func shutdownGRPCServer(server *grpc.Server, logger *log.Logger) {
 
 	select {
 	case <-done:
-		logger.Info("gRPC server stopped gracefully")
+		logger.Infof("gRPC server stopped gracefully")
 	case <-time.After(shutdownTimeout):
 		logger.Warnf("Graceful shutdown timed out after %v, forcing stop", shutdownTimeout)
 		server.Stop()

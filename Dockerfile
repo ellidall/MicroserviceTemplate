@@ -10,9 +10,8 @@ RUN apt-get update && \
     useradd -u 1001 -r -g 1001 -s /sbin/nologin -c "go microservice user" microuser
 
 ADD ./bin/microservicetemplate /app/bin/
+ADD ./data /app/data
 WORKDIR /app
-
-ADD ./data/mysql/migrations /data/mysql/migrations
 
 USER microuser
 # Run the application command by default when the container starts.

@@ -45,8 +45,14 @@ func newConnectionsContainer(
 
 		db, err := initMySQL(config)
 		if err != nil {
-			return err
+			return fmt.Errorf("failed to init DB for migrations: %w", err)
 		}
+		defer db.Close()
+
+		if err = applyMigrations(db.DB, pathToMigrations); err != nil {
+			return fmt.Errorf("migration failed: %w", err)
+		}
+		log.Infof("Migrations applied successfully")
 		multiCloser.Add(db)
 		container.db = db
 

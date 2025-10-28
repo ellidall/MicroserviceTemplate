@@ -39,7 +39,7 @@ func MakeLoggerServerInterceptor(logger *log.Logger) grpc.UnaryServerInterceptor
 
 		loggerWithFields := logger.WithFields(fields)
 		if err == nil {
-			loggerWithFields.Info("call finished")
+			loggerWithFields.Infof("call finished")
 		} else {
 			if isWarnLevel(err) {
 				loggerWithFields.Warnf("call failed: %v", err)
