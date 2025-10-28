@@ -10,6 +10,7 @@ import (
 	"github.com/urfave/cli/v2"
 	"google.golang.org/grpc"
 
+	api "microservicetemplate/api/server/microservicetemplateinternal"
 	"microservicetemplate/pkg/infrastructure/transport"
 )
 
@@ -46,7 +47,8 @@ func startGRPCServer(
 ) error {
 	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(makeGrpcUnaryInterceptor(logger)))
 
-	// TODO: зарегистрировать gRPC сервисы
+	// TODO: зарегистрировать свой сервер вместо шаблонного
+	api.RegisterMicroserviceTemplateInternalServiceServer(grpcServer, transport.NewInternalAPI())
 
 	listener, err := net.Listen("tcp", config.ServeGRPCAddress)
 	if err != nil {

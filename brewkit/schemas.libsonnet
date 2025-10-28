@@ -11,7 +11,7 @@ local copy = std.native('copy');
         copy: mappedFiles,
         command: std.join(' && ', [
                 'mkdir -p pkg',
-                'find . -name "*.proto" -exec protoc --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative:. {} \\;'
+                'find . -name "*.proto" -exec protoc --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative,require_unimplemented_servers=false:. {} \\;'
         ]),
         output: {
             artifact: "/app/api",

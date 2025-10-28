@@ -8,4 +8,6 @@ service MicroserviceTemplateInternalService {
 }
 
 message PingRequest {}
-message PingResponse { string message = 1; }
+message PingResponse {
+  string message = 1;
+}
