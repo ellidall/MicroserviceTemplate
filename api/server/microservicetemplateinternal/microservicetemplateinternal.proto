@@ -3,8 +3,10 @@ package MicroserviceTemplate;
 
 option go_package = "/.;microservicetemplateinternal";
 
+import "google/protobuf/empty.proto";
+
 service MicroserviceTemplateInternalService {
-  rpc Ping(PingRequest) returns (PingResponse);
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
 }
 
 message PingRequest {}

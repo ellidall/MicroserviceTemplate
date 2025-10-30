@@ -3,6 +3,8 @@ package transport
 import (
 	"context"
 
+	"google.golang.org/protobuf/types/known/emptypb"
+
 	api "microservicetemplate/api/server/microservicetemplateinternal"
 )
 
@@ -13,8 +15,7 @@ func NewInternalAPI() api.MicroserviceTemplateInternalServiceServer {
 type internalAPI struct {
 }
 
-func (i *internalAPI) Ping(_ context.Context, _ *api.PingRequest) (*api.PingResponse, error) {
-	return &api.PingResponse{
-		Message: "pong",
-	}, nil
+func (i *internalAPI) Ping(_ context.Context, _ *emptypb.Empty) (*api.PingResponse, error) {
+	// TODO implement me
+	panic("implement me")
 }
